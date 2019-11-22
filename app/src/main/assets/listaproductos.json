@@ -1,0 +1,24 @@
+﻿{
+	"productos": [{
+			"nombre": "Gafas de buceo",
+			"precio": "10€",
+			"descripcion": "Gafas de buceo con tubo para hacer snorkel",
+			"imagen": "gafas.jpg"
+
+		},
+		{
+			"nombre": "Bici de niño",
+			"precio": "50€",
+			"descripcion": "Bicicleta de niño con ruedines. Perfecta para niños de 3 a 5 años",
+			"imagen": "bici.jpg"
+
+		},
+		{
+			"nombre": "Tienda",
+			"precio": "30€",
+			"descripcion": "Tienda de campaña para 4 personas. Sin utilizar",
+			"imagen": "tienda.jpg"
+
+		}
+	]
+}

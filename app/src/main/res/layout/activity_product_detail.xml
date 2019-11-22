@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProductDetailActivity">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="2"
+        >
+
+        <TableRow android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="8pt"
+                android:layout_width="215dp"
+                android:layout_height="42dp"
+                android:layout_column="1"
+                android:padding="5dip"
+                android:text="NOMBRE"
+                />
+
+            <TextView
+                android:textSize="8pt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:padding="5dip"
+                android:text="PRECIO" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:textSize="10pt"
+                android:id="@+id/nombreText"
+                android:layout_width="0dp"
+                android:layout_column="1"
+                android:padding="5dip"
+                android:textColor="@color/cardview_dark_background"/>
+
+            <TextView
+                android:textSize="10pt"
+                android:id="@+id/precioText"
+                android:layout_width="0dp"
+                android:layout_column="2"
+                android:padding="5dip"
+                android:textColor="@color/cardview_dark_background"/>
+        </TableRow>
+
+
+        <TableRow android:layout_height="54dp">
+
+            <TextView
+                android:textSize="8pt"
+                android:layout_width="match_parent"
+                android:layout_column="1"
+                android:padding="5dip"
+                android:text="IMAGEN" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_column="2" />
+        </TableRow>
+
+        <TableRow>
+
+            <ImageView
+                android:textSize="10pt"
+                android:id="@+id/item_img"
+                android:layout_width="51dp"
+                android:layout_height="150dip"
+                android:layout_column="1"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="-100dp"
+                android:textAlignment="center"
+                android:contentDescription="@string/app_name" />
+
+            <TextView
+                android:textSize="10pt"
+                android:layout_width="match_parent"
+                android:layout_column="2" />
+
+            <TextView
+                android:textSize="10pt"
+                android:layout_width="match_parent"
+                android:layout_column="3" />
+        </TableRow>
+
+        <TableRow android:layout_width="wrap_content">
+
+
+            <TextView
+                android:textSize="8pt"
+                android:layout_width="0dp"
+                android:layout_column="1"
+                android:padding="5dip"
+                android:text="DESCRIPCIÓN"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_column="2" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_column="2" />
+
+            <TextView
+                android:textSize="10pt"
+                android:id="@+id/descText"
+                android:layout_width="250dp"
+                android:layout_height="150dip"
+                android:layout_column="1"
+                android:padding="5dip"
+                android:textColor="@color/cardview_dark_background"
+                android:layout_marginLeft="-400dp"
+                android:layout_marginRight="70dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_column="3" />
+
+        </TableRow>
+
+
+    </TableLayout>
+
+</android.support.constraint.ConstraintLayout>
