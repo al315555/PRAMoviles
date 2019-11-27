@@ -1,22 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/text_home"
+        android:id="@+id/label_nombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="1dp"
+        android:text="@string/nombre_label_mayus"
+        android:textAlignment="inherit"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include layout="@layout/content_activity_product_list" />
+
+    <EditText
+        android:id="@+id/text_nombre"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/label_descripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="1dp"
+        android:text="@string/descripcion_label_mayus"
+        android:textAlignment="inherit"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/text_descripcion"
+        android:layout_width="fill_parent"
+        android:layout_height="100dip"
+        android:layout_marginTop="128dp"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/label_descripcion"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/table_foto_precio"
+        android:stretchColumns="2"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        app:layout_constraintEnd_toEndOf="@+id/text_descripcion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_descripcion"
+        tools:layout_editor_absoluteY="228dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="2"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="229dp">
+
+            <ImageView
+                android:id="@+id/item_newimg"
+                android:layout_width="202dp"
+                android:layout_height="193dp"
+                android:layout_column="1"
+                android:contentDescription="@string/app_name"
+                android:textAlignment="center"
+                android:textSize="10pt" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="@dimen/activity_vertical_margin">
+
+                <Button
+                    android:id="@+id/button_add_foto"
+                    android:layout_width="129dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:text="@string/dofoto_label_mayus"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:layout_marginRight="128dp"
+                    android:text="@string/precio_label_mayus"
+                    android:textAlignment="inherit" />
+
+                <EditText
+                    android:id="@+id/text_precio"
+                    android:layout_width="123dp"
+                    android:padding="3dip"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/button_add_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="468dp"
+        android:text="@string/add_product_label_mayus"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

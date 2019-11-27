@@ -17,6 +17,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductListActivity  extends FragmentActivity implements
         ItemListFragment.OnListFragmentInteractionListener{
@@ -24,6 +25,7 @@ public class ProductListActivity  extends FragmentActivity implements
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    public static List<Producto> productoList ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,8 @@ public class ProductListActivity  extends FragmentActivity implements
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new MyItemRecyclerViewAdapter(inicializarProductos(), this);
+        productoList = inicializarProductos();
+        mAdapter = new MyItemRecyclerViewAdapter(productoList, this);
         recyclerView.setAdapter(mAdapter);
     }
 

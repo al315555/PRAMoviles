@@ -30,4 +30,17 @@
     <string name="menu_slideshow">Mapa</string>
     <string name="menu_send">Cerrar Sesión</string>
     <string name="title_activity_main_drawer">MainDrawerActivity</string>
+
+    <string name="nombre_label_mayus">NOMBRE</string>
+    <string name="nombre_label">Nombre</string>
+    <string name="descripcion_label_mayus">DESCRIPCIÓN</string>
+    <string name="descripcion_label">Descripción</string>
+    <string name="precio_label_mayus">PRECIO</string>
+    <string name="precio_label">Precio</string>
+    <string name="foto_label_mayus">IMAGEN</string>
+    <string name="dofoto_label_mayus">HACER FOTO</string>
+    <string name="add_product_label_mayus">AÑADIR PRODUCTO</string>
+
+    <string name="confirm_dialog_yes">Sí</string>
+    <string name="confirm_dialog_no">No</string>
 </resources>

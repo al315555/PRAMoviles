@@ -335,7 +335,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                Intent intent = new Intent(LoginActivity.this, ProductListActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MainDrawerActivity.class);
                 intent.putExtra("LoggedName", mEmail);
                 final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
                 SharedPreferences.Editor editor = sharedPref.edit();
@@ -344,7 +344,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 editor.putString("password", this.mPassword);
                 editor.apply();
                 startActivity(intent);
-                //finish();
+                finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();

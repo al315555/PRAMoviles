@@ -7,6 +7,7 @@ import android.arch.lifecycle.ViewModel;
 public class HomeViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
+    private MutableLiveData<String> mLabelNombreText;
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
@@ -15,5 +16,9 @@ public class HomeViewModel extends ViewModel {
 
     public LiveData<String> getText() {
         return mText;
+    }
+
+    public LiveData<String> getLabelNombreText() {
+        return mLabelNombreText;
     }
 }

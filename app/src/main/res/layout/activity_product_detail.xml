@@ -20,7 +20,7 @@
                 android:layout_height="42dp"
                 android:layout_column="1"
                 android:padding="5dip"
-                android:text="NOMBRE"
+                android:text="@string/nombre_label_mayus"
                 />
 
             <TextView
@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:layout_column="2"
                 android:padding="5dip"
-                android:text="PRECIO" />
+                android:text="@string/precio_label_mayus" />
         </TableRow>
 
         <TableRow>
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_column="1"
                 android:padding="5dip"
-                android:text="IMAGEN" />
+                android:text="@string/foto_label_mayus" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -98,7 +98,7 @@
                 android:layout_width="0dp"
                 android:layout_column="1"
                 android:padding="5dip"
-                android:text="DESCRIPCIÓN"/>
+                android:text="@string/descripcion_label_mayus"/>
 
             <TextView
                 android:layout_width="match_parent"

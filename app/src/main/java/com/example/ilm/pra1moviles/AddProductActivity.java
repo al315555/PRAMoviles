@@ -3,12 +3,11 @@ package com.example.ilm.pra1moviles;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class AddActivity extends AppCompatActivity {
+public class AddProductActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +20,7 @@ public class AddActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddActivity.this, ProductListActivity.class);
+                Intent intent = new Intent(AddProductActivity.this, ProductListActivity.class);
                 startActivity(intent);
                 finish();
                 /*Snackbar.make(view, "Maybe later, sorry...", Snackbar.LENGTH_LONG)

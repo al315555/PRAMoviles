@@ -1,25 +1,26 @@
 package com.example.ilm.pra1moviles.ui.gallery;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.support.annotation.Nullable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 
 import com.example.ilm.pra1moviles.ItemListFragment;
+import com.example.ilm.pra1moviles.LoginActivity;
 import com.example.ilm.pra1moviles.MyItemRecyclerViewAdapter;
 import com.example.ilm.pra1moviles.ProductDetailActivity;
-import com.example.ilm.pra1moviles.ProductListActivity;
 import com.example.ilm.pra1moviles.Producto;
 import com.example.ilm.pra1moviles.R;
 
@@ -30,9 +31,12 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
+import  com.example.ilm.pra1moviles.ListProductsInstance;
 
-public class GalleryFragment extends Fragment implements
+public class ProductListFragment extends Fragment implements
         ItemListFragment.OnListFragmentInteractionListener{
 
     private View root;
@@ -40,13 +44,12 @@ public class GalleryFragment extends Fragment implements
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private String mActivityTitle;
-
+    public static List<Producto> productoList ;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        // galleryViewModel = ViewModelProviders.of(this).get(GalleryViewModel.class);
 
-        root = inflater.inflate(R.layout.fragment_gallery, container, false);
+        root = inflater.inflate(R.layout.fragment_product_list, container, false);
 
         recyclerView = (RecyclerView) root.findViewById(R.id.my_recycler_view);
 
@@ -59,7 +62,12 @@ public class GalleryFragment extends Fragment implements
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new MyItemRecyclerViewAdapter(inicializarProductos(), this);
+        if(ListProductsInstance.productoList.isEmpty()) {
+            productoList = inicializarProductos();
+            ListProductsInstance.productoList.addAll(productoList);
+        }
+        productoList = ListProductsInstance.productoList;
+        mAdapter = new MyItemRecyclerViewAdapter(productoList, this);
         recyclerView.setAdapter(mAdapter);
 
         return root;
@@ -111,6 +119,34 @@ public class GalleryFragment extends Fragment implements
             e.printStackTrace();
         }
         return JsonProductos;
+    }
+
+    public static byte[] toByteArray(Object obj) throws IOException {
+        byte[] bytes = null;
+        ByteArrayOutputStream bos = null;
+        ObjectOutputStream oos = null;
+        try {
+            bos = new ByteArrayOutputStream();
+            oos = new ObjectOutputStream(bos);
+            oos.writeObject(obj);
+            oos.flush();
+            bytes = bos.toByteArray();
+        } finally {
+            if (oos != null) {
+                oos.close();
+            }
+            if (bos != null) {
+                bos.close();
+            }
+        }
+        return bytes;
+    }
+
+
+    public void displayReceivedData(Producto newProducto)
+    {
+        productoList.add(newProducto);
+        Log.d("TDDM-PRA1" + this.getClass(), "Data received: "+ newProducto.toString());
     }
 
 }

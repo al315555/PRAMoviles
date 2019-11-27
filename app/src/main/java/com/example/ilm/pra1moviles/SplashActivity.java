@@ -17,7 +17,6 @@ public class SplashActivity extends AppCompatActivity {
         boolean registered = sharedPref.getBoolean("registered", false);
         if (!registered) {
             intent = new Intent(this, LoginActivity.class);
-
         } else {
             //intent = new Intent(this, MainActivity.class);
             intent = new Intent(this, MainDrawerActivity.class);
