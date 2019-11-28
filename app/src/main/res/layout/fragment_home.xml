@@ -118,11 +118,22 @@
 
     </TableLayout>
 
+    <EditText
+        android:id="@+id/text_coordenadas"
+        android:layout_width="match_parent"
+        android:padding="3dip"
+        android:layout_height="wrap_content"
+        android:layout_column="2"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/table_foto_precio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/table_foto_precio"/>
+
     <Button
         android:id="@+id/button_add_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="468dp"
+        android:layout_marginTop="512dp"
         android:text="@string/add_product_label_mayus"
         android:textAlignment="center"
         android:textSize="16sp"

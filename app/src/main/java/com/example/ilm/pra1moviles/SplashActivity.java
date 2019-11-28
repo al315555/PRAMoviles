@@ -18,9 +18,7 @@ public class SplashActivity extends AppCompatActivity {
         if (!registered) {
             intent = new Intent(this, LoginActivity.class);
         } else {
-            //intent = new Intent(this, MainActivity.class);
             intent = new Intent(this, MainDrawerActivity.class);
-            //intent = new Intent(this, ProductListActivity.class);
             String username = sharedPref.getString("username", "user");
             intent.putExtra("LoggedName", username);
         }

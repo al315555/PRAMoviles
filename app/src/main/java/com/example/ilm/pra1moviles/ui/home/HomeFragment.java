@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
 import android.os.Bundle;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -26,11 +28,21 @@ import com.example.ilm.pra1moviles.FileUtil;
 import com.example.ilm.pra1moviles.ListProductsInstance;
 import com.example.ilm.pra1moviles.Producto;
 import com.example.ilm.pra1moviles.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
+
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class HomeFragment extends Fragment {
 
@@ -39,11 +51,19 @@ public class HomeFragment extends Fragment {
     private String nombreStringValue;
     private String descripcionStringValue;
     private String precioStringValue;
+    private double latitud, longitud;
     private ImageView imgnewProducto;
+    private TextView coordenadas;
     private Context context;
+
+    private FusedLocationProviderClient mFusedLocationClient;
+    private LocationRequest mLocationRequest;
+    private LocationCallback mlocationCallback;
 
     private static final String EURO_SYMBOL_CURRENCY = "€";
     private static final int REQUEST_CAMERA_PERMISSION = 200;
+
+    private static final int REQUEST_MULTIPERMISION= 1;
 
     SendMessage SM;
 
@@ -53,6 +73,36 @@ public class HomeFragment extends Fragment {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         final View root = inflater.inflate(R.layout.fragment_home, container, false);
         context = root.getContext();
+        //Coordenadas
+        coordenadas= root.findViewById(R.id.text_coordenadas);
+        mlocationCallback = new LocationCallback(){
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                List<Location> locationList = locationResult.getLocations();
+                if (locationList.size() > 0){
+                    Location location = locationList.get(locationList.size() - 1);
+                    latitud = location.getLatitude();
+                    longitud = location.getLongitude();
+                    ListProductsInstance.lastlocation = location;
+                    coordenadas.setText(String.format("Lat:%f Lon:%f", latitud, longitud));
+                    if (mFusedLocationClient != null){
+                        mFusedLocationClient.removeLocationUpdates(this);
+                    }
+                }
+             }
+        };
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(120000);
+        mLocationRequest.setFastestInterval(120000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+        mLocationRequest.setNumUpdates(1);
+
+        requestPermissions(new String[]{CAMERA, WRITE_EXTERNAL_STORAGE, ACCESS_FINE_LOCATION},
+                REQUEST_MULTIPERMISION);
+
+        mFusedLocationClient.requestLocationUpdates(mLocationRequest,mlocationCallback, Looper.myLooper());
         imgnewProducto =   root.findViewById(R.id.item_newimg);
         final TextView textNombre= root.findViewById(R.id.text_nombre);
         textNombre.addTextChangedListener(new TextWatcher() {
@@ -124,7 +174,6 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(root.getContext(), "Cargando la cámara...", Toast.LENGTH_SHORT).show();
             }
         });
-
         return root;
     }
 
@@ -166,9 +215,12 @@ public class HomeFragment extends Fragment {
         productoNuevo.setDescripcion(descripcionStringValue);
         productoNuevo.setPrecio(precioStringValue);
         productoNuevo.setNombre(nombreStringValue);
+        productoNuevo.setCoordenadas(coordenadas.getText().toString().trim());
         Bitmap imagen = ListProductsInstance.imagenProductoNuevo;
-        Bitmap imagenCopia = Bitmap.createScaledBitmap(imagen, imagen.getWidth(), imagen.getHeight(),false);
-        productoNuevo.setImagen(imagenCopia);
+        if ( imagen != null) {
+            Bitmap imagenCopia = Bitmap.createScaledBitmap(imagen, imagen.getWidth(), imagen.getHeight(), false);
+            productoNuevo.setImagen(imagenCopia);
+        }
         ListProductsInstance.imagenProductoNuevo = null;
         SM.sendData(productoNuevo);
         //GO TO PRODUCTS LIST

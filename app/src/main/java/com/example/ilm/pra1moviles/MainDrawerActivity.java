@@ -45,14 +45,11 @@ public class MainDrawerActivity extends AppCompatActivity implements HomeFragmen
     private AppBarConfiguration mAppBarConfiguration;
     private NavController navController;
     private String mEmail;
-    private static final int REQUEST_MULTIPERMISION= 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_drawer);
-        requestPermissions(new String[]{CAMERA, WRITE_EXTERNAL_STORAGE, ACCESS_FINE_LOCATION},
-                REQUEST_MULTIPERMISION);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);

@@ -110,8 +110,10 @@ public class ProductListFragment extends Fragment implements
                 String jimagen=jProducto.getString("imagen");
                 Bitmap imagen=
                         BitmapFactory.decodeStream(root.getContext().getAssets().open("images/"+jimagen));
+                Double jlat=jProducto.getDouble("latitud");
+                Double jlon=jProducto.getDouble("longitud");
                 JsonProductos.add(new Producto(jnombre, jprecio,
-                        jdescripcion, imagen));
+                        jdescripcion, imagen, jlat, jlon));
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -140,13 +142,6 @@ public class ProductListFragment extends Fragment implements
             }
         }
         return bytes;
-    }
-
-
-    public void displayReceivedData(Producto newProducto)
-    {
-        productoList.add(newProducto);
-        Log.d("TDDM-PRA1" + this.getClass(), "Data received: "+ newProducto.toString());
     }
 
 }
