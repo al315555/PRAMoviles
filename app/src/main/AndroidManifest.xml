@@ -37,10 +37,10 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCLuFS7a_Kva8MlMdxRhPGfWUR7pb2NcGo" />
+            android:value="AIzaSyAQcfEpbXXqPzP9evF857EfSlW3XnXDET8" />
         <meta-data
             android:name="com.google.android.geo.API-KEY"
-            android:value="AIzaSyCLuFS7a_Kva8MlMdxRhPGfWUR7pb2NcGo" />
+            android:value="AIzaSyAQcfEpbXXqPzP9evF857EfSlW3XnXDET8" />
 
         <provider
             android:name=".GenericFileProvider"
