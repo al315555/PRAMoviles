@@ -1,4 +1,4 @@
-package com.example.ilm.pra1moviles.drawer.producto;
+package com.example.ilm.pra2moviles.drawer.producto;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ilm.pra1moviles.adapter.MyItemRecyclerViewAdapter;
-import com.example.ilm.pra1moviles.R;
+import com.example.ilm.pra2moviles.adapter.MyItemRecyclerViewAdapter;
+import com.example.ilm.pra2moviles.R;
 
 /**
  * A fragment representing a list of Items.

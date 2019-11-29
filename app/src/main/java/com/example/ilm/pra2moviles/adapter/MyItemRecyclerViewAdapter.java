@@ -1,4 +1,4 @@
-package com.example.ilm.pra1moviles.adapter;
+package com.example.ilm.pra2moviles.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ilm.pra1moviles.R;
-import com.example.ilm.pra1moviles.drawer.producto.ItemListFragment.OnListFragmentInteractionListener;
-import com.example.ilm.pra1moviles.drawer.producto.Producto;
+import com.example.ilm.pra2moviles.R;
+import com.example.ilm.pra2moviles.drawer.producto.ItemListFragment.OnListFragmentInteractionListener;
+import com.example.ilm.pra2moviles.drawer.producto.Producto;
 
 import java.util.ArrayList;
 import java.util.List;

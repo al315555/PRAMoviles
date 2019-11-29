@@ -1,4 +1,4 @@
-package com.example.ilm.pra1moviles.drawer.producto;
+package com.example.ilm.pra2moviles.drawer.producto;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,9 +23,9 @@ import android.widget.Toast;
 
 import androidx.navigation.Navigation;
 
-import com.example.ilm.pra1moviles.util.FileUtil;
-import com.example.ilm.pra1moviles.util.ShareData;
-import com.example.ilm.pra1moviles.R;
+import com.example.ilm.pra2moviles.util.FileUtil;
+import com.example.ilm.pra2moviles.util.ShareData;
+import com.example.ilm.pra2moviles.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;

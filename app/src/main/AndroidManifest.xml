@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ilm.pra1moviles">
+    package="com.example.ilm.pra2moviles">
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -45,7 +45,7 @@
             android:value="AIzaSyAQcfEpbXXqPzP9evF857EfSlW3XnXDET8" />
 
         <provider
-            android:name=".util.GenericFileProvider"
+            android:name="com.example.ilm.pra2moviles.util.GenericFileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -55,11 +55,11 @@
         </provider>
 
         <activity
-            android:name=".MainDrawerActivity"
+            android:name="com.example.ilm.pra2moviles.MainDrawerActivity"
             android:label="@string/title_activity_main_drawer"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SplashActivity"
+            android:name="com.example.ilm.pra2moviles.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,9 +67,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProductDetailActivity" />
+        <activity android:name="com.example.ilm.pra2moviles.ProductDetailActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.example.ilm.pra2moviles.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

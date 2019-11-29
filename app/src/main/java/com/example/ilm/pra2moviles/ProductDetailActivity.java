@@ -1,11 +1,10 @@
-package com.example.ilm.pra1moviles;
+package com.example.ilm.pra2moviles;
 
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 

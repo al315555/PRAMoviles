@@ -1,4 +1,4 @@
-package com.example.ilm.pra1moviles.util;
+package com.example.ilm.pra2moviles.util;
 
 import android.content.Context;
 import android.net.Uri;

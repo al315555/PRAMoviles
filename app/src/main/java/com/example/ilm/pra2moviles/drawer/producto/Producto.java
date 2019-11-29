@@ -1,4 +1,4 @@
-package com.example.ilm.pra1moviles.drawer.producto;
+package com.example.ilm.pra2moviles.drawer.producto;
 
 import android.graphics.Bitmap;
 

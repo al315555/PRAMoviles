@@ -1,4 +1,4 @@
-package com.example.ilm.pra1moviles.drawer.gallery;
+package com.example.ilm.pra2moviles.drawer.gallery;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,11 +12,11 @@ import android.view.ViewGroup;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
-import com.example.ilm.pra1moviles.drawer.producto.ItemListFragment;
-import com.example.ilm.pra1moviles.adapter.MyItemRecyclerViewAdapter;
-import com.example.ilm.pra1moviles.ProductDetailActivity;
-import com.example.ilm.pra1moviles.drawer.producto.Producto;
-import com.example.ilm.pra1moviles.R;
+import com.example.ilm.pra2moviles.drawer.producto.ItemListFragment;
+import com.example.ilm.pra2moviles.adapter.MyItemRecyclerViewAdapter;
+import com.example.ilm.pra2moviles.ProductDetailActivity;
+import com.example.ilm.pra2moviles.drawer.producto.Producto;
+import com.example.ilm.pra2moviles.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +28,7 @@ import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import com.example.ilm.pra1moviles.util.ShareData;
+import com.example.ilm.pra2moviles.util.ShareData;
 
 public class ProductListFragment extends Fragment implements
         ItemListFragment.OnListFragmentInteractionListener{

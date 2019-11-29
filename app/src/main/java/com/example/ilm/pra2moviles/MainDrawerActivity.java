@@ -1,4 +1,4 @@
-package com.example.ilm.pra1moviles;
+package com.example.ilm.pra2moviles;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,9 +17,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.TextView;
 
-import com.example.ilm.pra1moviles.drawer.producto.NewProductFragment;
-import com.example.ilm.pra1moviles.drawer.producto.Producto;
-import com.example.ilm.pra1moviles.util.ShareData;
+import com.example.ilm.pra2moviles.drawer.producto.NewProductFragment;
+import com.example.ilm.pra2moviles.drawer.producto.Producto;
+import com.example.ilm.pra2moviles.util.ShareData;
 
 public class MainDrawerActivity extends AppCompatActivity implements NewProductFragment.SendMessage {
 

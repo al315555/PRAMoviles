@@ -1,4 +1,4 @@
-package com.example.ilm.pra1moviles;
+package com.example.ilm.pra2moviles;
 
 import org.junit.Test;
 

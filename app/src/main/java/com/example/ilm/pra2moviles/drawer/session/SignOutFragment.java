@@ -1,4 +1,4 @@
-package com.example.ilm.pra1moviles.drawer.session;
+package com.example.ilm.pra2moviles.drawer.session;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 import androidx.navigation.Navigation;
 
-import com.example.ilm.pra1moviles.LoginActivity;
-import com.example.ilm.pra1moviles.R;
+import com.example.ilm.pra2moviles.LoginActivity;
+import com.example.ilm.pra2moviles.R;
 
 public class SignOutFragment extends Fragment {
 

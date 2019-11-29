@@ -3,7 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <!--<fragment android:name="com.example.ilm.pra1moviles.ui.producto.ItemListFragment"
+    <!--<fragment android:name="pra2moviles.ui.producto.ItemListFragment"
         android:id="@+id/article_fragment"
         android:layout_weight="2"
         android:layout_width="0dp"

@@ -1,4 +1,4 @@
-package com.example.ilm.pra1moviles.drawer.map;
+package com.example.ilm.pra2moviles.drawer.map;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,9 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ilm.pra1moviles.drawer.producto.Producto;
-import com.example.ilm.pra1moviles.R;
-import com.example.ilm.pra1moviles.util.ShareData;
+import com.example.ilm.pra2moviles.drawer.producto.Producto;
+import com.example.ilm.pra2moviles.R;
+import com.example.ilm.pra2moviles.util.ShareData;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
