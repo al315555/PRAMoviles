@@ -1,4 +1,4 @@
-package com.example.ilm.pra1moviles.ui.home;
+package com.example.ilm.pra1moviles.drawer.producto;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,14 +19,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.arch.lifecycle.ViewModelProviders;
 import android.widget.Toast;
 
 import androidx.navigation.Navigation;
 
-import com.example.ilm.pra1moviles.FileUtil;
-import com.example.ilm.pra1moviles.ListProductsInstance;
-import com.example.ilm.pra1moviles.Producto;
+import com.example.ilm.pra1moviles.util.FileUtil;
+import com.example.ilm.pra1moviles.util.ShareData;
 import com.example.ilm.pra1moviles.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -44,9 +42,7 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-public class HomeFragment extends Fragment {
-
-    private HomeViewModel homeViewModel;
+public class NewProductFragment extends Fragment {
 
     private String nombreStringValue;
     private String descripcionStringValue;
@@ -69,8 +65,7 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+
         final View root = inflater.inflate(R.layout.fragment_home, container, false);
         context = root.getContext();
         //Coordenadas
@@ -83,7 +78,7 @@ public class HomeFragment extends Fragment {
                     Location location = locationList.get(locationList.size() - 1);
                     latitud = location.getLatitude();
                     longitud = location.getLongitude();
-                    ListProductsInstance.lastlocation = location;
+                    ShareData.lastlocation = location;
                     coordenadas.setText(String.format("Lat:%f Lon:%f", latitud, longitud));
                     if (mFusedLocationClient != null){
                         mFusedLocationClient.removeLocationUpdates(this);
@@ -183,7 +178,7 @@ public class HomeFragment extends Fragment {
             Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, FileUtil.fromFile(FileUtil.getTempFile(context), context) );
-            startActivityForResult(intent, ListProductsInstance.REQUEST_CAMERA);
+            startActivityForResult(intent, ShareData.REQUEST_CAMERA);
         }
     }
 
@@ -192,11 +187,11 @@ public class HomeFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode,data);
         if(resultCode == Activity.RESULT_OK) {
-            if (requestCode == ListProductsInstance.REQUEST_CAMERA) {
+            if (requestCode == ShareData.REQUEST_CAMERA) {
                 final File file = FileUtil.getTempFile(context);
                 try {
                     Bitmap captureBmp = android.provider.MediaStore.Images.Media.getBitmap(context.getContentResolver(), FileUtil.fromFile(file, context) );
-                    ListProductsInstance.imagenProductoNuevo = captureBmp;
+                    ShareData.imagenProductoNuevo = captureBmp;
                     ByteArrayOutputStream bStream = new ByteArrayOutputStream();
                     captureBmp.compress(Bitmap.CompressFormat.PNG, 100, bStream);
                     byte[] byteArray = bStream.toByteArray();
@@ -216,12 +211,12 @@ public class HomeFragment extends Fragment {
         productoNuevo.setPrecio(precioStringValue);
         productoNuevo.setNombre(nombreStringValue);
         productoNuevo.setCoordenadas(coordenadas.getText().toString().trim());
-        Bitmap imagen = ListProductsInstance.imagenProductoNuevo;
+        Bitmap imagen = ShareData.imagenProductoNuevo;
         if ( imagen != null) {
             Bitmap imagenCopia = Bitmap.createScaledBitmap(imagen, imagen.getWidth(), imagen.getHeight(), false);
             productoNuevo.setImagen(imagenCopia);
         }
-        ListProductsInstance.imagenProductoNuevo = null;
+        ShareData.imagenProductoNuevo = null;
         SM.sendData(productoNuevo);
         //GO TO PRODUCTS LIST
         Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.nav_gallery);

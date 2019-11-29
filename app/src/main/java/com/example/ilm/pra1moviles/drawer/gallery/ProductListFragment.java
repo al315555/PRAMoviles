@@ -1,27 +1,21 @@
-package com.example.ilm.pra1moviles.ui.gallery;
+package com.example.ilm.pra1moviles.drawer.gallery;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
-import com.example.ilm.pra1moviles.ItemListFragment;
-import com.example.ilm.pra1moviles.LoginActivity;
-import com.example.ilm.pra1moviles.MyItemRecyclerViewAdapter;
+import com.example.ilm.pra1moviles.drawer.producto.ItemListFragment;
+import com.example.ilm.pra1moviles.adapter.MyItemRecyclerViewAdapter;
 import com.example.ilm.pra1moviles.ProductDetailActivity;
-import com.example.ilm.pra1moviles.Producto;
+import com.example.ilm.pra1moviles.drawer.producto.Producto;
 import com.example.ilm.pra1moviles.R;
 
 import org.json.JSONArray;
@@ -34,7 +28,7 @@ import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import  com.example.ilm.pra1moviles.ListProductsInstance;
+import com.example.ilm.pra1moviles.util.ShareData;
 
 public class ProductListFragment extends Fragment implements
         ItemListFragment.OnListFragmentInteractionListener{
@@ -62,11 +56,11 @@ public class ProductListFragment extends Fragment implements
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        if(ListProductsInstance.productoList.isEmpty()) {
+        if(ShareData.productoList.isEmpty()) {
             productoList = inicializarProductos();
-            ListProductsInstance.productoList.addAll(productoList);
+            ShareData.productoList.addAll(productoList);
         }
-        productoList = ListProductsInstance.productoList;
+        productoList = ShareData.productoList;
         mAdapter = new MyItemRecyclerViewAdapter(productoList, this);
         recyclerView.setAdapter(mAdapter);
 
@@ -80,11 +74,12 @@ public class ProductListFragment extends Fragment implements
         intent.putExtra("PRECIO", item.getPrecio());
         intent.putExtra("DESC", item.getDescripcion());
 
-        ByteArrayOutputStream bStream = new ByteArrayOutputStream();
-        item.getImagen().compress(Bitmap.CompressFormat.PNG, 100, bStream);
-        byte[] byteArray = bStream.toByteArray();
-        intent.putExtra("IMG", byteArray);
-
+        if(item.getImagen() != null) {
+            ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+            item.getImagen().compress(Bitmap.CompressFormat.PNG, 100, bStream);
+            byte[] byteArray = bStream.toByteArray();
+            intent.putExtra("IMG", byteArray);
+        }
         startActivity(intent);
     }
 

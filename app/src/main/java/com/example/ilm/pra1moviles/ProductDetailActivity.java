@@ -27,7 +27,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         precioText.setText((String)getIntent().getSerializableExtra("PRECIO"));
         descText.setText((String)getIntent().getSerializableExtra("DESC"));
         byte[] byteArray = getIntent().getByteArrayExtra("IMG");
-        itemImg.setImageBitmap(BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length));
+        if(byteArray != null) {
+            itemImg.setImageBitmap(BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length));
+        }
         Log.d("TDDM-PRA1-DetailItem", nombreText.getText().toString());
         //AVAILABLE TO SHOW BACK BUTTON ON TOP
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -1,14 +1,14 @@
-package com.example.ilm.pra1moviles;
+package com.example.ilm.pra1moviles.util;
 
 import android.graphics.Bitmap;
 import android.location.Location;
 
-import com.example.ilm.pra1moviles.Producto;
+import com.example.ilm.pra1moviles.drawer.producto.Producto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public final class ListProductsInstance {
+public final class ShareData {
     public static final int REQUEST_CAMERA = 0;
     public static Bitmap imagenProductoNuevo = null;
     public static Location lastlocation = null;

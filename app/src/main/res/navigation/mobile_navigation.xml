@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.ilm.pra1moviles.ui.home.HomeFragment"
+        android:name="com.example.ilm.pra1moviles.drawer.producto.NewProductFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.ilm.pra1moviles.ui.gallery.ProductListFragment"
+        android:name="com.example.ilm.pra1moviles.drawer.gallery.ProductListFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/activity_main_product_list" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.ilm.pra1moviles.MapaFragment"
+        android:name="com.example.ilm.pra1moviles.drawer.map.MapaFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_mapa" />
 
     <fragment
         android:id="@+id/nav_send"
-        android:name="com.example.ilm.pra1moviles.ui.send.SendFragment"
+        android:name="com.example.ilm.pra1moviles.drawer.session.SignOutFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
 </navigation>

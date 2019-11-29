@@ -1,19 +1,11 @@
 package com.example.ilm.pra1moviles;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.View;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
@@ -23,24 +15,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ilm.pra1moviles.ui.gallery.ProductListFragment;
-import com.example.ilm.pra1moviles.ui.home.HomeFragment;
+import com.example.ilm.pra1moviles.drawer.producto.NewProductFragment;
+import com.example.ilm.pra1moviles.drawer.producto.Producto;
+import com.example.ilm.pra1moviles.util.ShareData;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.List;
-
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static android.Manifest.permission.CAMERA;
-import static android.Manifest.permission.READ_CONTACTS;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-
-public class MainDrawerActivity extends AppCompatActivity implements HomeFragment.SendMessage {
+public class MainDrawerActivity extends AppCompatActivity implements NewProductFragment.SendMessage {
 
     private AppBarConfiguration mAppBarConfiguration;
     private NavController navController;
@@ -96,7 +77,7 @@ public class MainDrawerActivity extends AppCompatActivity implements HomeFragmen
 
     @Override
     public void sendData(Producto newProducto) {
-        ListProductsInstance.productoList.add(newProducto);
+        ShareData.productoList.add(newProducto);
         navController.navigate(R.id.nav_home);
     }
 

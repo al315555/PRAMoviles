@@ -1,10 +1,6 @@
-package com.example.ilm.pra1moviles;
+package com.example.ilm.pra1moviles.drawer.producto;
 
 import android.content.Context;
-import android.content.res.AssetManager;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,13 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
+import com.example.ilm.pra1moviles.adapter.MyItemRecyclerViewAdapter;
+import com.example.ilm.pra1moviles.R;
 
 /**
  * A fragment representing a list of Items.

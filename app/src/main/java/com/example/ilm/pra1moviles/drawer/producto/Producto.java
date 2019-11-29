@@ -1,8 +1,6 @@
-package com.example.ilm.pra1moviles;
+package com.example.ilm.pra1moviles.drawer.producto;
 
 import android.graphics.Bitmap;
-
-import java.io.Serializable;
 
 public class Producto{
 
@@ -95,8 +93,8 @@ public class Producto{
     public void setCoordenadas(String coordenadas) {
         //Lat:%d Lon:%d
         String[] splitted = coordenadas.split(" ");
-        double lat = Double.parseDouble(splitted[0].substring(splitted[0].lastIndexOf(":") + 1 ).trim());
-        double lon = Double.parseDouble(splitted[1].substring(splitted[1].lastIndexOf(":") + 1 ).trim());
+        double lat = Double.parseDouble(splitted[0].substring(splitted[0].lastIndexOf(":") + 1 ).replace(',', '.').trim());
+        double lon = Double.parseDouble(splitted[1].substring(splitted[1].lastIndexOf(":") + 1 ).replace(',', '.').trim());
         this.latitud = lat;
         this.longitud = lon;
     }

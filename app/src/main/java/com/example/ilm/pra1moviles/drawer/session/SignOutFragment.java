@@ -1,4 +1,4 @@
-package com.example.ilm.pra1moviles.ui.send;
+package com.example.ilm.pra1moviles.drawer.session;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -18,7 +18,7 @@ import androidx.navigation.Navigation;
 import com.example.ilm.pra1moviles.LoginActivity;
 import com.example.ilm.pra1moviles.R;
 
-public class SendFragment extends Fragment {
+public class SignOutFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

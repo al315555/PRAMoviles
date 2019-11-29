@@ -3,7 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <!--<fragment android:name="com.example.ilm.pra1moviles.ItemListFragment"
+    <!--<fragment android:name="com.example.ilm.pra1moviles.ui.producto.ItemListFragment"
         android:id="@+id/article_fragment"
         android:layout_weight="2"
         android:layout_width="0dp"
@@ -20,6 +20,6 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="25dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".ItemListFragment"
+        tools:context=".drawer.producto.ItemListFragment"
         tools:listitem="@layout/fragment_itemlist" />
 </LinearLayout>
