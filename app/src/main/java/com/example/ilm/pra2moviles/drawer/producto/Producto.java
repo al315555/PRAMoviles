@@ -8,6 +8,7 @@ public class Producto{
     private String precio;
     private String descripcion;
     private Bitmap imagen;
+    private String imgFileName;
     private double latitud;
     private double longitud;
 
@@ -34,6 +35,11 @@ public class Producto{
         this.imagen = imagen;
         this.latitud = jlat;
         this.longitud = jlon;
+    }
+
+    public Producto(String nombre, String precio, String descripcion, Bitmap imagen, double jlat, double jlon, String imgFileName){
+        this(nombre, precio, descripcion, imagen, jlat, jlon);
+        this.imgFileName = imgFileName;
     }
 
 
@@ -84,6 +90,10 @@ public class Producto{
     public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
+
+    public String getImgFileName(){return this.imgFileName;}
+
+    public void setImgFileName(String fileName ){this.imgFileName = fileName;}
 
     @Override
     public String toString(){

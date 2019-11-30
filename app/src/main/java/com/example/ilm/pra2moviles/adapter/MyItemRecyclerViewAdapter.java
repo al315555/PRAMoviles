@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.ilm.pra2moviles.R;
 import com.example.ilm.pra2moviles.drawer.producto.ItemListFragment.OnListFragmentInteractionListener;
 import com.example.ilm.pra2moviles.drawer.producto.Producto;
+import com.example.ilm.pra2moviles.util.FileUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     private final List<Producto> mValues;
     private final OnListFragmentInteractionListener mListener;
+    private View root;
 
     public MyItemRecyclerViewAdapter(List<Producto> items, OnListFragmentInteractionListener listener) {
         mValues = items;
@@ -31,9 +33,9 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
+        root = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_itemlist, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(root);
     }
 
     @Override
@@ -43,7 +45,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         //holder.mContentView.setText(mValues.get(position).getDescripcion());
         holder.mMoneyView.setText(mValues.get(position).getPrecio());
         holder.mImgView.setImageBitmap(mValues.get(position).getImagen());
-
+        FileUtil.getBitMap(holder.mImgView, mValues.get(position).getImgFileName(), root.getContext() );
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override

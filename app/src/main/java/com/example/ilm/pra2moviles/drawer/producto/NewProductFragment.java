@@ -6,11 +6,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.location.Location;
+import android.media.ExifInterface;
 import android.os.Bundle;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +37,11 @@ import com.google.android.gms.location.LocationServices;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -51,6 +57,8 @@ public class NewProductFragment extends Fragment {
     private ImageView imgnewProducto;
     private TextView coordenadas;
     private Context context;
+
+    final Producto productoNuevo = new Producto();
 
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest mLocationRequest;
@@ -175,9 +183,10 @@ public class NewProductFragment extends Fragment {
     private void addFotoAction() {
         if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
             // this device has a camera
+            productoNuevo.setImgFileName("tmpproduct-"+ Calendar.getInstance().getTimeInMillis()+".tmp");
             Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, FileUtil.fromFile(FileUtil.getTempFile(context), context) );
+            intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, FileUtil.fromFile(FileUtil.getTempFile(context, productoNuevo.getImgFileName()), context) );
             startActivityForResult(intent, ShareData.REQUEST_CAMERA);
         }
     }
@@ -188,14 +197,20 @@ public class NewProductFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode,data);
         if(resultCode == Activity.RESULT_OK) {
             if (requestCode == ShareData.REQUEST_CAMERA) {
-                final File file = FileUtil.getTempFile(context);
+                final File file = FileUtil.getTempFile(context, productoNuevo.getImgFileName());
                 try {
                     Bitmap captureBmp = android.provider.MediaStore.Images.Media.getBitmap(context.getContentResolver(), FileUtil.fromFile(file, context) );
-                    ShareData.imagenProductoNuevo = captureBmp;
                     ByteArrayOutputStream bStream = new ByteArrayOutputStream();
-                    captureBmp.compress(Bitmap.CompressFormat.PNG, 100, bStream);
-                    byte[] byteArray = bStream.toByteArray();
-                    imgnewProducto.setImageBitmap(BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length));
+                    captureBmp = FileUtil.rotateBitmap(captureBmp);
+                    captureBmp.compress(Bitmap.CompressFormat.JPEG, 100, bStream);
+                    if(file.canWrite()){
+                        FileOutputStream fileOutputStream= new FileOutputStream(file);
+                        fileOutputStream.write(bStream.toByteArray());
+                        fileOutputStream.flush();
+                        fileOutputStream.close();
+                    }
+                    //byte[] byteArray = bStream.toByteArray();
+                    imgnewProducto.setImageBitmap(captureBmp);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -206,23 +221,28 @@ public class NewProductFragment extends Fragment {
     }
 
     private void addButtonAction() {
-        final Producto productoNuevo = new Producto();
         productoNuevo.setDescripcion(descripcionStringValue);
         productoNuevo.setPrecio(precioStringValue);
         productoNuevo.setNombre(nombreStringValue);
         productoNuevo.setCoordenadas(coordenadas.getText().toString().trim());
-        Bitmap imagen = ShareData.imagenProductoNuevo;
-        if ( imagen != null) {
-            Bitmap imagenCopia = Bitmap.createScaledBitmap(imagen, imagen.getWidth(), imagen.getHeight(), false);
-            productoNuevo.setImagen(imagenCopia);
+        final File file = FileUtil.getTempFile(context, productoNuevo.getImgFileName());
+        Bitmap imagen = null;
+        try {
+            imagen = android.provider.MediaStore.Images.Media.getBitmap(context.getContentResolver(), FileUtil.fromFile(file, context));
+        } catch (FileNotFoundException e) {
+            Log.d("NewProductFragment:233", "FileNotFoundException -> " + e.getLocalizedMessage().toString());
+        } catch (IOException e) {
+            Log.d("NewProductFragment:231", "IOException -> " + e.getLocalizedMessage().toString());
         }
-        ShareData.imagenProductoNuevo = null;
+        if (imagen != null) {
+            Bitmap imagenCopia = Bitmap.createScaledBitmap(imagen, imagen.getWidth(), imagen.getHeight(), false);
+            //productoNuevo.setImagen(imagenCopia);º
+        }
         SM.sendData(productoNuevo);
         //GO TO PRODUCTS LIST
         Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.nav_gallery);
     }
-
-    @Override
+        @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_CAMERA_PERMISSION) {
             if (grantResults[0] == PackageManager.PERMISSION_DENIED) {

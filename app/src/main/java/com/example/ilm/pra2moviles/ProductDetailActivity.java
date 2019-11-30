@@ -1,5 +1,6 @@
 package com.example.ilm.pra2moviles;
 
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.ilm.pra2moviles.util.FileUtil;
+
+import java.io.File;
+import java.io.IOException;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -25,10 +31,8 @@ public class ProductDetailActivity extends AppCompatActivity {
         nombreText.setText((String)getIntent().getSerializableExtra("NOMBRE"));
         precioText.setText((String)getIntent().getSerializableExtra("PRECIO"));
         descText.setText((String)getIntent().getSerializableExtra("DESC"));
-        byte[] byteArray = getIntent().getByteArrayExtra("IMG");
-        if(byteArray != null) {
-            itemImg.setImageBitmap(BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length));
-        }
+        final String filename = (String)getIntent().getSerializableExtra("FILENAME");
+        FileUtil.getBitMap(itemImg, filename, this);
         Log.d("TDDM-PRA1-DetailItem", nombreText.getText().toString());
         //AVAILABLE TO SHOW BACK BUTTON ON TOP
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

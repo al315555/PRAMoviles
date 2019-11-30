@@ -1,6 +1,7 @@
 package com.example.ilm.pra2moviles.drawer.producto;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.ilm.pra2moviles.adapter.MyItemRecyclerViewAdapter;
 import com.example.ilm.pra2moviles.R;

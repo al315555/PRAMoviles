@@ -37,7 +37,6 @@ public class ProductListFragment extends Fragment implements
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private String mActivityTitle;
     public static List<Producto> productoList ;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -74,11 +73,12 @@ public class ProductListFragment extends Fragment implements
         intent.putExtra("PRECIO", item.getPrecio());
         intent.putExtra("DESC", item.getDescripcion());
 
-        if(item.getImagen() != null) {
-            ByteArrayOutputStream bStream = new ByteArrayOutputStream();
-            item.getImagen().compress(Bitmap.CompressFormat.PNG, 100, bStream);
+        if(item.getImgFileName() != null) {
+            /*ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+            item.getImagen().compress(Bitmap.CompressFormat.JPEG, 100, bStream);
             byte[] byteArray = bStream.toByteArray();
-            intent.putExtra("IMG", byteArray);
+             */
+            intent.putExtra("FILENAME", item.getImgFileName());
         }
         startActivity(intent);
     }
@@ -103,12 +103,13 @@ public class ProductListFragment extends Fragment implements
                 String jprecio=jProducto.getString("precio");
                 String jdescripcion=jProducto.getString("descripcion");
                 String jimagen=jProducto.getString("imagen");
+                final String filename = "images/"+jimagen;
                 Bitmap imagen=
-                        BitmapFactory.decodeStream(root.getContext().getAssets().open("images/"+jimagen));
+                        BitmapFactory.decodeStream(root.getContext().getAssets().open(filename));
                 Double jlat=jProducto.getDouble("latitud");
                 Double jlon=jProducto.getDouble("longitud");
                 JsonProductos.add(new Producto(jnombre, jprecio,
-                        jdescripcion, imagen, jlat, jlon));
+                        jdescripcion, imagen, jlat, jlon, filename));
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -116,27 +117,6 @@ public class ProductListFragment extends Fragment implements
             e.printStackTrace();
         }
         return JsonProductos;
-    }
-
-    public static byte[] toByteArray(Object obj) throws IOException {
-        byte[] bytes = null;
-        ByteArrayOutputStream bos = null;
-        ObjectOutputStream oos = null;
-        try {
-            bos = new ByteArrayOutputStream();
-            oos = new ObjectOutputStream(bos);
-            oos.writeObject(obj);
-            oos.flush();
-            bytes = bos.toByteArray();
-        } finally {
-            if (oos != null) {
-                oos.close();
-            }
-            if (bos != null) {
-                bos.close();
-            }
-        }
-        return bytes;
     }
 
 }
